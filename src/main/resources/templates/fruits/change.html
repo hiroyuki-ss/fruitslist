@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>フルーツ変更</title>
+</head>
+
+<body>
+    <h1>フルーツ変更</h1>
+    <form th:method="post" th:object="${fruits}"
+    	th:action="@{/fruits/change/id={id}(id=*{id})}">
+        <label>ID:<input type="text" th:field="*{id}" readonly></label><br>
+        <label>名前:<input type="text" th:field="*{name}" readonly></label><br>
+        <label>値段:<input type="text" th:field="*{price}"></label><br>
+        <button>変更</button>
+    </form>
+</body>
+</html>

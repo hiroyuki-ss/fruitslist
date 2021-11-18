@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>フルーツリスト</title>
+</head>
+<body>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>値段</th>
+    </tr>
+    <tr th:each="u:${fruits}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.price}"></td>
+    </tr>
+    </table>
+</body>
+</html>

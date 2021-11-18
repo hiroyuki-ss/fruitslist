@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>フルーツ一覧</title>
+</head>
+<body>
+    <h1>フルーツ一覧</h1>
+
+    <div th:if="!${fruits.size()}">
+        <p>登録されているフルーツはありません</p>
+    </div>
+
+    <a th:href="@{/fruits/register}">
+        <button>新しいフルーツを登録</button>
+    </a>
+
+    <table th:if="${fruits.size()}" border=1>
+    <!-- DB内のデータがtrue = 0以外の時 -->
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>値段</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="fruits:${fruits}" th:object="${fruits}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{price}"></td>
+                <td><a th:href="@{/fruits/details/id={id}(id=*{id})}">
+                	<button>詳細</button></a></td>
+                <td><a th:href="@{/fruits/change/id={id}(id=*{id})}">
+                	<button>変更</button></a></td>
+                <td>
+                    <form th:method="post" th:action=
+                    	"@{/fruits/delete/id={id}(id=*{id})}">
+                    		<button>削除</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
