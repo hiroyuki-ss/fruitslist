@@ -18,8 +18,8 @@ public class UControllerTest {
 	private MockMvc mockMvc;
 	
 	@Test
-	void top処理でhttpステータス200が返る() throws Exception {
-		this.mockMvc.perform(get("/fruits"))
+	void getUserList処理でhttpステータス200が返る() throws Exception {
+		this.mockMvc.perform(get("/fruits/list"))
 			.andDo(print())
 			.andExpect(status().isOk());
 		

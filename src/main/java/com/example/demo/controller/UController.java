@@ -28,7 +28,7 @@ public class UController {
     public String getUserList(Model model) {
         List<User> userList =  service.getList();
         model.addAttribute("fruits", userList);
-        //model.addAttribute("message", "hello");
+        model.addAttribute("message", "hello");
         return "fruits/list";
     }   
 	
@@ -36,7 +36,7 @@ public class UController {
     @GetMapping("")
     public String top(Model model, @ModelAttribute User u) {
         model.addAttribute("fruits", service.getList());
-        model.addAttribute("message", "hello");
+        //model.addAttribute("message", "hello");
         return "fruits/top";
     }
 
