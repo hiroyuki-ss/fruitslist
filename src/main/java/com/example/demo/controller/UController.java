@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,19 +22,19 @@ public class UController {
 	private UService service;
 	
 	//select全件表示
-    @GetMapping("/list")
-    public String getUserList(Model model) {
-        List<User> userList =  service.getList();
-        model.addAttribute("fruits", userList);
-        model.addAttribute("message", "hello");
-        return "fruits/list";
-    }   
+//    @GetMapping("/list")
+//    public String getUserList(Model model) {
+//        List<User> userList =  service.getList();
+//        model.addAttribute("fruits", userList);
+//        //model.addAttribute("message", "hello!");
+//        return "fruits/list";
+//    }
 	
     //top.htmlを表示
     @GetMapping("")
     public String top(Model model, @ModelAttribute User u) {
         model.addAttribute("fruits", service.getList());
-        //model.addAttribute("message", "hello");
+        model.addAttribute("message", "hello!");
         return "fruits/top";
     }
 
