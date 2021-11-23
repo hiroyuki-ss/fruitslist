@@ -81,8 +81,8 @@ public class UController {
 
     //削除してtop画面に遷移
     @PostMapping("delete/id={id}")
-    public String delete(@PathVariable Integer id, @ModelAttribute User u) {
-        service.deleteOne(u);
+    public String delete(@PathVariable Integer id) {
+        service.deleteOne(id);
         return "redirect:/fruits";
     }
 

@@ -24,5 +24,5 @@ public interface UMapper {
     		@Param("name") String name, @Param("price") Integer price);
 
     //delete
-    public void deleteOne(User u);
+    public void deleteOne(Integer id);
 }
