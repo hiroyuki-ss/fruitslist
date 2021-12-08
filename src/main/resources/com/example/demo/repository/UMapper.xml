@@ -23,7 +23,7 @@
   </select>
 
   <insert id="insertOne">
-    insert into fruits (
+    insert ignore into fruits (
         id,
         name,
         price

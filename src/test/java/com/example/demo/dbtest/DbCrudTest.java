@@ -73,7 +73,7 @@ public class DbCrudTest {
 		 * 
 		 */
 	}
-
+	
 	@Test
     @DatabaseSetup(value = "/testData/init-data/")
     void initData内のCSVファイルのデータを読み取り_全件取得した変数fruitsの要素数が4つであるか()
