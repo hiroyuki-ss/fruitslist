@@ -41,23 +41,27 @@ public class UController {
     //select１件 詳細画面
     @GetMapping("details/id={id}")
     public String details(@PathVariable("id") Integer id, Model model) {
+    	
+    	if (id == null) {
+    			throw new NullPointerException();
+		}
         model.addAttribute("fruits", service.getUserOne(id));
         return "fruits/details";
     }
 
     //新規登録画面へ遷移
     @GetMapping("/register")
-    public String registerUser(Model model, @ModelAttribute User u) {
+    public String registerUser( @ModelAttribute User u, Model model) {
         model.addAttribute("fruits", u);
         return "fruits/register";
     }
     
     //新規登録してtop画面へ遷移
     @PostMapping("/register")
-    public String create(@Validated @ModelAttribute User u,
-    		BindingResult result) {
+    public String create(@ModelAttribute @Validated User u,
+    		BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "fruits/register";
+            return registerUser(u, model);
         }
         service.insertOne(u);
         return "redirect:/fruits";
@@ -82,8 +86,10 @@ public class UController {
     //削除してtop画面に遷移
     @PostMapping("delete/id={id}")
     public String delete(@PathVariable Integer id) {
+    	if (id == null) {
+			throw new NullPointerException();
+		}
         service.deleteOne(id);
         return "redirect:/fruits";
     }
-
 }
