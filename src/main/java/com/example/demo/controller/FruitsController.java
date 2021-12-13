@@ -21,15 +21,6 @@ public class FruitsController {
 	@Autowired
 	private FruitsService service;
 	
-	//select全件表示
-//    @GetMapping("/list")
-//    public String getUserList(Model model) {
-//        List<User> userList =  service.getList();
-//        model.addAttribute("fruits", userList);
-//        //model.addAttribute("message", "hello!");
-//        return "fruits/list";
-//    }
-	
     //top.htmlを表示
     @GetMapping("")
     public String top(Model model, @ModelAttribute User u) {
@@ -77,7 +68,12 @@ public class FruitsController {
     
     //詳細変更をしてtop画面へ遷移（変更はhtml内でreadonlyにして、値段のみ変更可）
     @PostMapping("change/id={id}")
-    public String update(@ModelAttribute User u, Model model) {
+    public String update(@ModelAttribute @Validated User u,
+    		BindingResult result, Model model) {
+    	if (result.hasErrors()) {
+            return "fruits/change";
+        }
+    	
         service.updateOne(u.getId(), u.getName(), u.getPrice());
         return "redirect:/fruits";
     }
