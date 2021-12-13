@@ -34,7 +34,7 @@ public class UService {
     }
 
     //delete
-    public void deleteOne(User u) {
-        mapper.deleteOne(u);
+    public void deleteOne(Integer id) {
+        mapper.deleteOne(id);
     }
 }

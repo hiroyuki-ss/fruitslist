@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+
 @AutoConfigureMockMvc //MockMvc使用するためのアノテーション
 @SpringBootTest
 public class UControllerTest {
@@ -33,6 +34,14 @@ public class UControllerTest {
 		 * HTTPステータスコードが200であることを(status().isOk())
 		 */
 	}
+	
+	@Test
+    void top処理でviewとしてfruits_topHtmlが渡される() throws Exception {
+        this.mockMvc.perform(get("/fruits"))
+            //.andExpect(status().isOk())
+            .andExpect(view().name("fruits/top"));
+    }
+	
 	
 	@Test
 	void top処理でmodelのmessageにhelloが渡される() throws Exception {

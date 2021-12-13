@@ -43,14 +43,16 @@ import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
  * DBを扱うテストで使用
  * 
  */
-public class DB_CRUD_Test {
+public class DbCrudTest {
 	
 	@Autowired
 	private UService service;
-	
+	//When-Given-Then  振る舞いー振る舞いを実行する前の状態ー振る舞いの結果
+	//作業単位ーテスト条件ー想定行動
 	@Test
 	@DatabaseSetup(value = "/testData/init-data/")
-	void selectOne処理が正しく期待通りかのテスト() throws Exception {
+	void initData内のCSVファイルのデータを読み取り_Idを引数として1件取得_変数expectedの値と結果が期待通りか()
+				throws Exception {
 		User expected = User.builder()//lombokのBuilderを使用
 				.id(2)
 				.name("test2")
@@ -71,10 +73,11 @@ public class DB_CRUD_Test {
 		 * 
 		 */
 	}
-
+	
 	@Test
     @DatabaseSetup(value = "/testData/init-data/")
-    void selectAll処理が正しく期待通りかのテスト() throws Exception {
+    void initData内のCSVファイルのデータを読み取り_全件取得した変数fruitsの要素数が4つであるか()
+    		throws Exception {
         List<User> fruits = service.getList();
         //int expected = 4;
         //int actual = fruits.size();
@@ -87,7 +90,8 @@ public class DB_CRUD_Test {
 	@ExpectedDatabase(value = "/testData/after-create-data/",
 		table = "fruits", assertionMode = DatabaseAssertionMode
 			.NON_STRICT_UNORDERED)
-	void insert処理が正しく期待通りかのテスト() throws Exception {
+	void initData内のCSVファイルのデータを読み取り_変数newUserに入っている値をinsertして_afterCreateData内のCSVファイルの中身と同じか検証する()
+				throws Exception {
 		User newUser = User.builder()
 				.id(5)
 				.name("test5")
@@ -117,7 +121,8 @@ public class DB_CRUD_Test {
 	@ExpectedDatabase(value = "/testData/after-update-data/",
 		table = "fruits", assertionMode = DatabaseAssertionMode
 			.NON_STRICT_UNORDERED)
-	void update処理が正しく期待通りかのテスト() throws Exception {
+	void initData内のCSVファイルのデータを読み取り_Idが4のレコードのnameがtest4からupdateに変更され_afterUpdateData内のCSVファイルの中身と同じか検証する()
+				throws Exception {
 		service.updateOne(4, "update", 200);
 	}
 	
@@ -127,8 +132,9 @@ public class DB_CRUD_Test {
 	@ExpectedDatabase(value = "/testData/after-delete-data/",
 		table = "fruits", assertionMode = DatabaseAssertionMode
 			.NON_STRICT_UNORDERED)
-	void delete処理が正しく期待通りかのテスト() throws Exception {
-		List<User> fruits = service.getList();	
-		service.deleteOne(fruits.get(3));
+	void initData内のCSVファイルのデータを読み取り_Idを引数として_Idが4のレコードが削除され_afterDeleteData内のCSVファイルの中身と同じか検証する()
+			throws Exception {
+		//List<User> fruits = service.getList();	
+		service.deleteOne(4);
 	}
 }
