@@ -43,8 +43,7 @@ public class DeleteFruitsControllerTest {
 	
 	@Test //delete
 	void 存在しないIdを削除しようするとエラー画面になる() throws Exception {
-		
-			this.mockMvc.perform(post("/delete", "/delete/id={id}")
+			this.mockMvc.perform(post("/delete/{id}", "testId")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
 				.andExpect(status().isNotFound());
 	}

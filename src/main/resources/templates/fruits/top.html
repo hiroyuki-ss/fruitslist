@@ -34,13 +34,13 @@
                 <td th:text="*{id}"></td>
                 <td th:text="*{name}"></td>
                 <td th:text="*{price}"></td>
-                <td><a th:href="@{/fruits/details/id={id}(id=*{id})}">
+                <td><a th:href="@{/fruits/details/{id}(id=*{id})}">
                 	<button>詳細</button></a></td>
-                <td><a th:href="@{/fruits/change/id={id}(id=*{id})}">
+                <td><a th:href="@{/fruits/change/{id}(id=*{id})}">
                 	<button>変更</button></a></td>
                 <td>
                     <form th:method="post" th:action=
-                    	"@{/fruits/delete/id={id}(id=*{id})}">
+                    	"@{/fruits/delete/{id}(id=*{id})}">
                     		<button>削除</button>
                     </form>
                 </td>

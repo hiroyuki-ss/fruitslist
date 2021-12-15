@@ -13,27 +13,23 @@ public class FruitsService {
 	
 	@Autowired
 	FruitsMapper mapper;
-	
-	//select１件
+
     public User getUserOne(Integer id) {
         return mapper.findOne(id);
     }
-    //select全件
+    
     public List<User> getList() {
         return mapper.find();
     }
 
-    //insert
     public void insertOne(User u) {
         mapper.insertOne(u);
     }
 
-    //update
     public void updateOne(Integer id, String name, Integer price) {
         mapper.updateOne(id, name, price);
     }
 
-    //delete
     public void deleteOne(Integer id) {
         mapper.deleteOne(id);
     }

@@ -43,7 +43,7 @@ public class DetailsFruitsControllerTest {
 	@Test //select１件
 	void 存在しないidユーザーを取得しようするとエラー画面となる() throws Exception {
 		
-		this.mockMvc.perform(get("/details", "/details/id={id}")
+		this.mockMvc.perform(get("/details/{id}", "testId")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
 				.andExpect(status().isNotFound());
 	}
