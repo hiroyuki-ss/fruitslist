@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @AutoConfigureMockMvc //MockMvc使用するためのアノテーション
 @SpringBootTest
-public class UControllerTest {
+public class FruitsControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -26,19 +26,11 @@ public class UControllerTest {
 		this.mockMvc.perform(get("/fruits"))
 		.andDo(print())
 		.andExpect(status().isOk());
-		/*
-		 * 実行してください（perform)
-		 * "/fruits"へのGETリクエストを（get)
-		 * 結果を表示してください(andDo(print))
-		 * （結果を）期待してます(andExpect)
-		 * HTTPステータスコードが200であることを(status().isOk())
-		 */
 	}
 	
 	@Test
     void top処理でviewとしてfruits_topHtmlが渡される() throws Exception {
         this.mockMvc.perform(get("/fruits"))
-            //.andExpect(status().isOk())
             .andExpect(view().name("fruits/top"));
     }
 	

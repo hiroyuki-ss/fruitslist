@@ -17,21 +17,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.example.demo.controller.UController;
-import com.example.demo.service.UService;
+import com.example.demo.controller.FruitsController;
+import com.example.demo.service.FruitsService;
 @AutoConfigureMockMvc
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
-public class RegisterUControllerTest {
+public class RegisterFruitsControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private UService service;
+	private FruitsService service;
 	
 	@Autowired
-	private UController target;
+	private FruitsController target;
 
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -49,13 +49,6 @@ public class RegisterUControllerTest {
 			.andExpect(status().isOk());
 	}
 	
-//	@Test
-//    void register処理でviewとしてfruits_registerHtmlが渡される() throws Exception {
-//        this.mockMvc.perform(get("/fruits/register"))
-//            //.andExpect(status().isOk())
-//            .andExpect(view().name("fruits/register"));
-//    }
-	
 	@Test
 	void 新規登録時にidが空の状態で登録処理をするとregister画面に戻る() throws Exception {
 		
@@ -65,10 +58,7 @@ public class RegisterUControllerTest {
 			.param("name", "テスト")
 			.param("price", "テスト"))
 			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().errorCount(1))
-			//.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().errorCount(1))//エラー数を検証
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -80,9 +70,7 @@ public class RegisterUControllerTest {
 			.param("name", "テスト")
 			.param("price", "テスト"))
 			.andExpect(model().hasErrors())
-			//.andExpect(status().isOk())
 			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -94,10 +82,8 @@ public class RegisterUControllerTest {
 			.param("id", " ")
 			.param("name", "テスト")
 			.param("price", "テスト"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user")//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -109,10 +95,8 @@ public class RegisterUControllerTest {
 			.param("id", "1")
 			.param("name", "")
 			.param("price", "test"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -122,12 +106,9 @@ public class RegisterUControllerTest {
 			this.mockMvc.perform(post("/fruits/register")
 			.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 			.param("id", "1")
-			//.param("name", "")
 			.param("price", "test"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -139,10 +120,8 @@ public class RegisterUControllerTest {
 			.param("id", "1")
 			.param("name", " ")
 			.param("price", "test"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -154,10 +133,8 @@ public class RegisterUControllerTest {
 			.param("id", "1")
 			.param("name", "123456789012345678901")
 			.param("price", "1"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 	
@@ -169,10 +146,8 @@ public class RegisterUControllerTest {
 			.param("id", "1")
 			.param("name", "test")
 			.param("price", "test"))
-			.andExpect(model().hasErrors()) // 新規登録部分にエラーが存在するか
-			.andExpect(model().attributeErrorCount("user", 1))//エラー数を検証
-			//.andExpect(model().attributeHasFieldErrors("user"))//特定のフィールドにエラーがあるか検証
-			//.andExpect(status().isOk())
+			.andExpect(model().hasErrors())
+			.andExpect(model().attributeErrorCount("user", 1))
 			.andExpect(view().name("fruits/register"));
 	}
 }
