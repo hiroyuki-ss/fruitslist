@@ -9,10 +9,10 @@
     <h1>新規フルーツ登録</h1>
     <form th:method="post" th:object="${fruits}"
     	th:action="@{/fruits/register}">
-        <label>ID:<input type="text" th:field="*{id}"></label><br>
-        <label>名前:<input type="text" th:field="*{name}"></label><br>
-        <label>値段:<input type="text" th:field="*{price}"></label><br>
-
+        <label>ID:<input id="id" type="text" th:field="*{id}"></label><br>
+        <label>名前:<input id="name" type="text" th:field="*{name}"></label><br>
+        <label>値段:<input id="price" type="text" th:field="*{price}"></label><br>
+		
         <button>新規登録</button>
     </form>
 </body>

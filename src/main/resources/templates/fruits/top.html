@@ -11,7 +11,7 @@
         <p>登録されているフルーツはありません</p>
     </div>
 
-    <a th:href="@{/fruits/register}">
+    <a id="registerButton" th:href="@{/fruits/register}">
         <button>新しいフルーツを登録</button>
     </a>
 
@@ -31,9 +31,9 @@
 
         <tbody>
             <tr th:each="fruits:${fruits}" th:object="${fruits}">
-                <td th:text="*{id}"></td>
-                <td th:text="*{name}"></td>
-                <td th:text="*{price}"></td>
+                <td th:text="*{id}" th:id="id"></td>
+                <td th:text="*{name}" th:id="name"></td>
+                <td th:text="*{price}" th:id="price"></td>
                 <td><a th:href="@{/fruits/details/{id}(id=*{id})}">
                 	<button>詳細</button></a></td>
                 <td><a th:href="@{/fruits/change/{id}(id=*{id})}">
