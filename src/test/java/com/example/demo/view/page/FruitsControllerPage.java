@@ -9,7 +9,7 @@ import com.codeborne.selenide.SelenideElement;
 
 public class FruitsControllerPage {
 	
-	private static final String URL = "http://localhost:8080/";
+	private static final String URL = "http://localhost:8080/fruits";
 	
 	@FindBy(id = "registerButton")
 	private SelenideElement registerButton;
