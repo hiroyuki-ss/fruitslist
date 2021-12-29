@@ -7,12 +7,16 @@
 
 <body>
     <h1>新規フルーツ登録</h1>
-    <form th:method="post" th:object="${fruits}"
+    
+    <form th:method="post" th:object="${fruits}" 
     	th:action="@{/fruits/register}">
         <label>ID:<input id="id" type="text" th:field="*{id}"></label><br>
         <label>名前:<input id="name" type="text" th:field="*{name}"></label><br>
         <label>値段:<input id="price" type="text" th:field="*{price}"></label><br>
 		
-        <button>新規登録</button>
+        <button id="registerButton">新規登録</button>
+        <br><br>
+        
     </form>
+    	<a id="backButton" th:href="@{/fruits}">トップ画面へ</a>
 </body>

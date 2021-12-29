@@ -9,10 +9,12 @@
     <h1>フルーツ変更</h1>
     <form th:method="post" th:object="${fruits}"
     	th:action="@{/fruits/change/id={id}(id=*{id})}">
-        <label>ID:<input type="text" th:field="*{id}" readonly></label><br>
-        <label>名前:<input type="text" th:field="*{name}" readonly></label><br>
-        <label>値段:<input type="text" th:field="*{price}"></label><br>
-        <button>変更</button>
+        <label>ID:<input id="id" type="text" th:field="*{id}" readonly></label><br>
+        <label>名前:<input id="name" type="text" th:field="*{name}" readonly></label><br>
+        <label>値段:<input id="price" type="text" th:field="*{price}"></label><br> 
+        <button id="changeButton">変更</button>
     </form>
+    <br>
+    <a id="backButton" th:href="@{/fruits}">トップ画面へ</a>
 </body>
 </html>

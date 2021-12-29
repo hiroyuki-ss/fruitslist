@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>フルーツの詳細</title>
+    <title>フルーツ詳細</title>
 </head>
 
 <body>
@@ -15,11 +15,13 @@
                 <th>値段</th>
             </tr>
             <tr>
-                <td th:text="*{id}"></td>
-                <td th:text="*{name}"></td>
-                <td th:text="*{price}"></td>
+                <td th:text="*{id}" id="id"></td>
+                <td th:text="*{name}" id="name"></td>
+                <td th:text="*{price}" id="price"></td>
             </tr>
 		</table>
+		<br>
+		<a id="backButton" th:href="@{/fruits}">トップ画面へ</a>
 	</div>
 </body>
 </html>

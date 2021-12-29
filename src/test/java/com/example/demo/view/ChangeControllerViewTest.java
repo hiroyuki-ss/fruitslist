@@ -1,4 +1,5 @@
 package com.example.demo.view;
+
 import static com.codeborne.selenide.Condition.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -16,19 +17,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.codeborne.selenide.Configuration;
 import com.example.demo.view.page.ChangeFruitsControllerPage;
-import com.example.demo.view.page.DetailsFruitsControllerPage;
 import com.example.demo.view.page.FruitsControllerPage;
-import com.example.demo.view.page.RegisterFruitsControllerPage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @TestPropertySource(locations = "classpath:test.properties")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class FruitsControllerViewTest {
+public class ChangeControllerViewTest {
 	
-	private FruitsControllerPage page;
-		
+	private ChangeFruitsControllerPage page;
+	
 	@BeforeClass
 	public static void setUp() {
 		System.setProperty("webdriver.chrome.driver", "/Users/hiroyuki/Downloads/chromedriver");
@@ -37,31 +36,21 @@ public class FruitsControllerViewTest {
 	
 	@Before
 	public void setUpTest() {
-		page = FruitsControllerPage.open();
+		page = FruitsControllerPage.open().フルーツ変更画面へ遷移する();
 	}
 	
 	@Test
-	public void No1トップ画面から新規フルーツ登録画面へ遷移できる() throws Exception {
-		RegisterFruitsControllerPage actual = page.新規フルーツ登録画面へ遷移する();
-		assertThat(actual.title()).isEqualTo("新規フルーツ登録");
+	public void No1フルーツ変更画面からトップ画面へ戻る() throws Exception {
+		FruitsControllerPage actual = page.トップ画面へ戻る();
+		assertThat(actual.title()).isEqualTo("フルーツ一覧");
 	}
 	
 	@Test
-	public void No2トップ画面からフルーツ詳細画面へ遷移できる() throws Exception {
-		DetailsFruitsControllerPage actual = page.フルーツ詳細画面へ遷移する();
-		assertThat(actual.title()).isEqualTo("フルーツ詳細");
-	}
-	
-	@Test
-	public void No3トップ画面からフルーツ変更画面へ遷移できる() throws Exception {
-		ChangeFruitsControllerPage actual = page.フルーツ変更画面へ遷移する();
-		assertThat(actual.title()).isEqualTo("フルーツ変更");
-	}
-	
-	@Test
-	public void No4トップ画面から削除できる() throws Exception {
-		FruitsControllerPage actual = page.削除する(1);
+	public void No2フルーツ変更画面から値段変更できる() throws Exception {
+		FruitsControllerPage actual = page
+				.priceは("500")
+				.変更する();
 		actual.新規登録変更削除後の画面().shouldBe(visible);
-		assertThat(actual.新規登録変更削除後の要素数()).isEqualTo(3);
+		assertThat(actual.新規登録変更削除後の要素数()).isEqualTo(4);
 	}
 }
