@@ -64,4 +64,5 @@ public class FruitsControllerViewTest {
 		actual.新規登録変更削除後の画面().shouldBe(visible);
 		assertThat(actual.新規登録変更削除後の要素数()).isEqualTo(3);
 	}
+	
 }
