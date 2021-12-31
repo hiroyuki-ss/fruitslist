@@ -13,7 +13,7 @@ import com.example.demo.service.FruitsService;
 
 @RestController
 @RequestMapping("/fruits/api")
-public class FruitsRestController {
+public class FruitsRestApiController {
 
 	@Autowired
 	private FruitsService service;
