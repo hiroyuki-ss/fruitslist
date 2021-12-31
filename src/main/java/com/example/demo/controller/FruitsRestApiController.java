@@ -28,3 +28,4 @@ public class FruitsRestApiController {
         return service.getUserOne(id);
     }
 }
+
