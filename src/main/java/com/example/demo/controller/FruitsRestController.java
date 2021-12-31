@@ -13,19 +13,20 @@ import com.example.demo.service.FruitsService;
 
 @RestController
 @RequestMapping("/fruits/api")
-public class FruitsRestApiController {
-	
+public class FruitsRestController {
+
 	@Autowired
 	private FruitsService service;
 	
 	@GetMapping
+	
 	public List<User> seleteAll() {
-        return service.getList();
-    }
+		return service.getList();
+	}
 	
 	@GetMapping("/details/{id}")
+	
 	public User seleteOne(@PathVariable Integer id) {
-        return service.getUserOne(id);
-    }
+		return service.getUserOne(id);
+	}
 }
-
