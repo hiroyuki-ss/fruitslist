@@ -39,7 +39,7 @@ public class FruitsControllerViewTest {
 	@BeforeClass
 	public static void setUp() {
 		String properOne = userProperty.getPropertyOne();
-		System.setProperty("file", properOne);
+		System.setProperty("webdriver.chrome.driver", properOne);
 		Configuration.holdBrowserOpen = true;
 	}
 	
